@@ -42,6 +42,8 @@ Plug 'tpope/vim-commentary'
 Plug 'bkad/CamelCaseMotion'
 " Heuristically set indent settings
 Plug 'tpope/vim-sleuth'
+" Syntax checking hacks for vim
+Plug 'scrooloose/syntastic'
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -360,6 +362,21 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1       " Turn on true colors support (does not 
 " -----------------------------------------------------
 "}}}
 
+
+" ---------------------------------------------------------------------------------------------------------------------
+" 2.12 syntastic settings {{{
+" ---------------------------------------------------------------------------------------------------------------------
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" }}}
 "}}}
 
 " ======================================================================================================================
