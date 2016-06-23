@@ -499,6 +499,7 @@ endif
 nnoremap <leader>w :w<CR>
 " nnoremap <silent> ,c :Sayonara!<CR>
 " nnoremap <silent> ,q :Sayonara<CR>
+nnoremap <leader>q :Sayonara<CR>
 
 " Yank and paste from clipboard
 nnoremap ,y "+y
@@ -872,6 +873,7 @@ let g:deoplete#sources['javascript.jsx'] = ['buffer', 'member', 'file', 'ultisni
 let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 "}}}
 
 " -----------------------------------------------------
