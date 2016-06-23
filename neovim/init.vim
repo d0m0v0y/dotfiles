@@ -699,6 +699,7 @@ let g:unite_source_tag_max_fname_length=50
 " let g:NERDTreeHighlightCursorline=0
 " let g:NERDTreeRespectWildIgnore=1
 nnoremap <leader>` :NERDTreeToggle<CR>
+nnoremap <leader>m :NERDTreeFind<CR>
 "}}}
 
 " -----------------------------------------------------
