@@ -1,0 +1,9 @@
+/tmp/
+/log/
+/logs/
+/images/
+/vendor/
+*.log
+*.tags*
+*.gemtags*
+*.tmp*
