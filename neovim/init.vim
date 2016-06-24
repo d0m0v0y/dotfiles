@@ -99,6 +99,7 @@ Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xht
 " Elixir syntax
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
+Plug 'awetzel/elixir.nvim'
 " Elm support
 Plug 'ElmCast/elm-vim'
 " Yaml indentation
@@ -372,9 +373,9 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
 " }}}
 "}}}
@@ -829,7 +830,8 @@ let g:deoplete#sources['javascript.jsx'] = ['buffer', 'member', 'file', 'ultisni
 let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+let g:deoplete#sources.elixir = ['omni']
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 "}}}
 
 " -----------------------------------------------------
