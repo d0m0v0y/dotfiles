@@ -905,8 +905,10 @@ function! s:unite_settings()
   nmap <silent> <buffer> m <Plug>(unite_toggle_mark_current_candidate)
 endfunction
 
-nnoremap <leader>o :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec/neovim<CR>
-nnoremap <leader>O :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec<CR>
+" nnoremap <leader>o :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec/neovim<CR>
+nnoremap <leader>t :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec/neovim<CR>
+" nnoremap <leader>p :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec/neovim<CR>
+nnoremap <leader>p :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec<CR>
 nnoremap <leader>b :<C-U>Unite -quick-match -no-split -buffer-name=buffer buffer<CR>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
 nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru -start-insert file_mru<cr>
