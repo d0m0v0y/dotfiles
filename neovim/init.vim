@@ -31,7 +31,11 @@ call plug#begin('~/.config/nvim/plugged')
 " Asynchronous maker and linter (needs linters to work)
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
 " Autocomplete
-Plug 'Shougo/deoplete.nvim'
+" function! DoRemote(arg)
+"   UpdateRemotePlugins
+" endfunction
+" Plug 'Shougo/deoplete.nvim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 " Automatically closing pair stuff
 Plug 'cohama/lexima.vim'
 " Snippet support (C-j)
@@ -69,15 +73,17 @@ Plug 'tpope/vim-bundler', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
 " ---------------------------------------------------------------------------------------------------------------------
 
 " JS basic support (indent, etc.)
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 " JS syntax (keywords, DOM, etc.)
-" Plug 'jelera/vim-javascript-syntax'
+Plug 'jelera/vim-javascript-syntax'
 " JSX syntax
-" Plug 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx'
 " Typescript syntax
-" Plug 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim'
 " JSON syntax
 Plug 'sheerun/vim-json'
+" Mustache
+Plug 'mustache/vim-mustache-handlebars'
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -97,9 +103,10 @@ Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xht
 " ---------------------------------------------------------------------------------------------------------------------
 
 " Elixir syntax
-Plug 'elixir-lang/vim-elixir'
-Plug 'slashmili/alchemist.vim'
-Plug 'awetzel/elixir.nvim'
+Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'eelixir'] }
+Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'eelixir'] }
+" Plug 'awetzel/elixir.nvim'
+Plug 'larrylv/ycm-elixir'
 " Elm support
 Plug 'ElmCast/elm-vim'
 " Yaml indentation
@@ -818,20 +825,19 @@ let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
 " -----------------------------------------------------
 " 4.14 Deoplete autocomplete settings {{{
 " -----------------------------------------------------
-let g:deoplete#enable_at_startup=1
-let g:deoplete#enable_refresh_always=1
-let g:deoplete#file#enable_buffer_path=1
+" let g:deoplete#enable_at_startup=1
+" let g:deoplete#enable_refresh_always=1
+" let g:deoplete#file#enable_buffer_path=1
 
-let g:deoplete#sources={}
-let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
-let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-let g:deoplete#sources['javascript.jsx'] = ['buffer', 'member', 'file', 'ultisnips']
-let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-let g:deoplete#sources.elixir = ['omni']
-" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" let g:deoplete#sources={}
+" let g:deoplete#sources._    = ['buffer', 'file', 'omni', 'ultisnips']
+" let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
+" let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
+" let g:deoplete#sources['javascript.jsx'] = ['buffer', 'member', 'file', 'ultisnips']
+" let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+" let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+" let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+" let g:deoplete#sources.elixir = ['omni']
 "}}}
 
 " -----------------------------------------------------
@@ -986,8 +992,8 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " inoremap <silent> <expr> <C-]> utils#manualTagComplete()
 
 " <C-h>, <BS>: close popup and delete backword char
-inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 "}}}
 
 " -----------------------------------------------------
