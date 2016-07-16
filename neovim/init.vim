@@ -1,11 +1,3 @@
-" ######################################################################################################################
-" ### Author : Martin Toma <martin.toma.svk@gmail.com>                                                               ###
-" ######################################################################################################################
-" ### Neovim Configuration focused on Web development                                                                ###
-" ### Neovimmer since : Tue Oct 14 2014                                                                              ###
-" ### Vimmer since    : Tue Nov 12 2013                                                                              ###
-" ######################################################################################################################
-
 " ======================================================================================================================
 " 1.0 Plugin manager (Plug) settings
 " ======================================================================================================================
@@ -756,21 +748,27 @@ let g:gitgutter_sign_removed_first_line='-'
 " -----------------------------------------------------
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename' ] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype', 'fileencoding', 'fileformat' ] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
-      \ },
       \ 'component_function': {
-      \   'mode': 'utils#lightLineMode',
-      \   'filename': 'utils#lightLineFilename',
-      \   'filetype': 'utils#lightLineFiletype',
-      \   'fileformat': 'utils#lightLineFileformat',
-      \   'fileencoding': 'utils#lightLineFileencoding'
+      \   'filename': 'LightLineFilename'
       \ },
       \ }
+
+function! LightLineModified()
+  return &ft =~ 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineReadonly()
+  return &ft !~? 'help\|vimfiler' && &readonly ? '⭤' : ''
+endfunction
+
+function! LightLineFilename()
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:f') ? expand('%:f') : '[No Name]') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
 "}}}
 
 " -----------------------------------------------------
