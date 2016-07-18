@@ -688,6 +688,15 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 if executable('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C0'
+        \ . " --exclude='*.svn*'"
+        \ . " --exclude='*.svn*'"
+        \ . " --exclude='*.log*'"
+        \ . " --exclude='*tmp*'"
+        \ . " --exclude-dir='**/tmp'"
+        \ . " --exclude-dir='CVS'"
+        \ . " --exclude-dir='.svn'"
+        \ . " --exclude-dir='.git'"
+        \ . " --exclude-dir='node_modules'"
   let g:unite_source_grep_recursive_opt=''
 
   " Set rec source command
@@ -913,7 +922,7 @@ endfunction
 
 " nnoremap <leader>o :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec/neovim<CR>
 nnoremap <leader>t :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec/neovim<CR>
-" nnoremap <leader>p :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec/neovim<CR>
+nnoremap <leader>gg :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec/git<CR>
 nnoremap <leader>p :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec<CR>
 nnoremap <leader>b :<C-U>Unite -quick-match -no-split -buffer-name=buffer buffer<CR>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
