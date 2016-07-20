@@ -672,9 +672,11 @@ let g:utils_autoswitch_kb_layout=0
 " 4.2 Unite {{{
 " -----------------------------------------------------
 
+let g:unite_source_rec_max_cache_files = 0
+
 " Matcher settings
 call unite#filters#matcher_default#use(['matcher_fuzzy', 'matcher_hide_current_file'])
-call unite#filters#sorter_default#use(['sorter_rank'])
+" call unite#filters#sorter_default#use(['sorter_rank'])
 
 " Use ag if available
 if executable('ag')
@@ -757,27 +759,11 @@ let g:gitgutter_sign_removed_first_line='-'
 " -----------------------------------------------------
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
-      \ 'component_function': {
-      \   'filename': 'LightLineFilename'
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
       \ },
       \ }
 
-function! LightLineModified()
-  return &ft =~ 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightLineReadonly()
-  return &ft !~? 'help\|vimfiler' && &readonly ? '⭤' : ''
-endfunction
-
-function! LightLineFilename()
-  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:f') ? expand('%:f') : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
 "}}}
 
 " -----------------------------------------------------
