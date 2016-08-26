@@ -454,8 +454,8 @@ vnoremap H ^
 vnoremap L g_
 
 " Remap J and K (pageUp and pageDown)
-nnoremap J <C-f>zz
-nnoremap K <C-b>zz
+" nnoremap J <C-f>zz
+" nnoremap K <C-b>zz
 
 " More logical Y (default was alias for yy)
 " nnoremap Y y$
@@ -631,7 +631,12 @@ cnoremap qq qall
 " -----------------------------------------------------
 
 " Generate tags definitions
-" command! GTags :call utils#generateCtags()
+command! GTags :call utils#generateCtags()
+
+function! g:utils#generateCtags() abort
+  silent execute '!starscope -e ctags'
+  echom 'Tags generated into tags file!'
+endfunction
 
 " Open notes
 " command! Notes :call utils#openNotes()
@@ -721,8 +726,8 @@ let g:unite_source_tag_max_fname_length=50
 " 4.3 NERDTree {{{
 " -----------------------------------------------------
 " let g:NERDTreeMinimalUI=1
-" let g:NERDTreeWinSize=50
-" let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeWinSize=50
+let g:NERDTreeAutoDeleteBuffer=1
 " let g:NERDTreeShowHidden=1
 " let g:NERDTreeHighlightCursorline=0
 " let g:NERDTreeRespectWildIgnore=1
@@ -908,7 +913,8 @@ endfunction
 nnoremap <leader>t :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec/neovim<CR>
 nnoremap <leader>gg :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec/git<CR>
 nnoremap <leader>p :<C-U>Unite -no-split -buffer-name=files -start-insert file_rec<CR>
-nnoremap <leader>b :<C-U>Unite -quick-match -no-split -buffer-name=buffer buffer<CR>
+" nnoremap <leader>b :<C-U>Unite -quick-match -no-split -buffer-name=buffer buffer<CR>
+nnoremap <leader>b :<C-U>Unite -no-split -buffer-name=buffers -start-insert buffer<CR>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
 nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru -start-insert file_mru<cr>
 nnoremap <leader>l :<C-u>Unite -buffer-name=outline -start-insert outline<cr>
